@@ -78,6 +78,7 @@ function classNames(...classes: string[]) {
 }
 
 export default async function Header() {
+  
   const [open, setOpen] = useState(false)
   const session = await auth()
   console.log(session)
