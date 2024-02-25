@@ -1,11 +1,12 @@
-
 'use client'
+
 import { Fragment, useState } from 'react'
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
+import { Dialog, Menu, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingCartIcon, UserIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Session } from 'next-auth/types'
-import Dropdown from './Dropdown'
 import Link from 'next/link'
+import { logout } from '@/actions/logout'
+import toast from 'react-hot-toast'
 
 const navigation = {
     categories: [
@@ -78,8 +79,12 @@ function classNames(...classes: string[]) {
 //! async function for client component throw error
 export default function Header({ session }: { session: Session | null }) {
     const [open, setOpen] = useState(false)
-
     console.log(session)
+
+    const handleSignOut = () => {
+        logout()
+        toast.success('Signed out successfully!')
+    }
 
     return (
         <div className="bg-white">
@@ -429,7 +434,95 @@ export default function Header({ session }: { session: Session | null }) {
                                                 <div className="flex">
                                                     <button type='button' className="-m-2 p-2 text-gray-400 hover:text-gray-500">
                                                         <span className="sr-only">Account</span>
-                                                        {session ? <Dropdown session={session} /> : <UserIcon className="w-6 h-6" aria-hidden="true" />}
+                                                        <Menu as="div" className="relative inline-block text-left">
+                                                            <div>
+                                                                <Menu.Button>
+                                                                    {session ? (
+                                                                        <img
+                                                                            src={session.user.image ?? ''}
+                                                                            alt=""
+                                                                            className="w-6 h-6 rounded-full"
+                                                                        />
+                                                                    ) : <UserIcon className="w-6 h-6" aria-hidden="true" />}
+                                                                </Menu.Button>
+                                                            </div>
+
+                                                            <Transition
+                                                                as={Fragment}
+                                                                enter="transition ease-out duration-100"
+                                                                enterFrom="transform opacity-0 scale-95"
+                                                                enterTo="transform opacity-100 scale-100"
+                                                                leave="transition ease-in duration-75"
+                                                                leaveFrom="transform opacity-100 scale-100"
+                                                                leaveTo="transform opacity-0 scale-95"
+                                                            >
+                                                                <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
+                                                                    <div className="px-4 py-3">
+                                                                        <p className="text-sm">Signed in as</p>
+                                                                        <p className="text-sm font-medium text-gray-900 truncate">{session?.user.email}</p>
+                                                                    </div>
+                                                                    <div className="py-1">
+                                                                        <Menu.Item>
+                                                                            {({ active }) => (
+                                                                                <a
+                                                                                    href="#"
+                                                                                    className={classNames(
+                                                                                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                                                        'block px-4 py-2 text-sm'
+                                                                                    )}
+                                                                                >
+                                                                                    Account settings
+                                                                                </a>
+                                                                            )}
+                                                                        </Menu.Item>
+                                                                        <Menu.Item>
+                                                                            {({ active }) => (
+                                                                                <a
+                                                                                    href="#"
+                                                                                    className={classNames(
+                                                                                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                                                        'block px-4 py-2 text-sm'
+                                                                                    )}
+                                                                                >
+                                                                                    Support
+                                                                                </a>
+                                                                            )}
+                                                                        </Menu.Item>
+                                                                        <Menu.Item>
+                                                                            {({ active }) => (
+                                                                                <a
+                                                                                    href="#"
+                                                                                    className={classNames(
+                                                                                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                                                        'block px-4 py-2 text-sm'
+                                                                                    )}
+                                                                                >
+                                                                                    License
+                                                                                </a>
+                                                                            )}
+                                                                        </Menu.Item>
+                                                                    </div>
+                                                                    <div className="py-1">
+                                                                        <form method="POST" action="#">
+                                                                            <Menu.Item>
+                                                                                {({ active }) => (
+                                                                                    <button
+                                                                                        type="submit"
+                                                                                        onClick={handleSignOut}
+                                                                                        className={classNames(
+                                                                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                                                            'block w-full text-left px-4 py-2 text-sm'
+                                                                                        )}
+                                                                                    >
+                                                                                        Sign out
+                                                                                    </button>
+                                                                                )}
+                                                                            </Menu.Item>
+                                                                        </form>
+                                                                    </div>
+                                                                </Menu.Items>
+                                                            </Transition>
+                                                        </Menu>
                                                     </button>
                                                 </div>
                                             </div>

@@ -33,8 +33,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { FormError } from "@/components/form-error";
-import { FormSuccess } from "@/components/form-success";
 import { UserRole } from "@prisma/client";
 
 const SettingsPage = () => {
@@ -216,8 +214,12 @@ const SettingsPage = () => {
                 />
               )}
             </div>
-            <FormError message={error} />
-            <FormSuccess message={success} />
+            {error && (
+              <p className="text-red-500">{error}</p>
+            )}
+            {success && (
+              <p className="text-green-500">{success}</p>
+            )}
             <Button
               disabled={isPending}
               type="submit"
