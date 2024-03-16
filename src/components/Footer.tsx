@@ -44,9 +44,9 @@ export default function Footer() {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="border-t border-gray-200">
-          <div className="pt-16 pb-20">
+          <div className="pb-20 pt-16">
             <div className="md:flex md:justify-center">
               <Image
                 height={32}
@@ -56,9 +56,9 @@ export default function Footer() {
                 className="h-8 w-auto"
               />
             </div>
-            <div className="mt-16 max-w-5xl mx-auto xl:grid xl:grid-cols-2 xl:gap-8">
+            <div className="mx-auto mt-16 max-w-5xl xl:grid xl:grid-cols-2 xl:gap-8">
               <div className="grid grid-cols-2 gap-8 xl:col-span-2">
-                <div className="space-y-12 md:space-y-0 md:grid md:grid-cols-2 md:gap-8">
+                <div className="space-y-12 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
                   <div>
                     <h3 className="text-sm font-medium text-gray-900">
                       Products
@@ -94,7 +94,7 @@ export default function Footer() {
                     </ul>
                   </div>
                 </div>
-                <div className="space-y-12 md:space-y-0 md:grid md:grid-cols-2 md:gap-8">
+                <div className="space-y-12 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
                   <div>
                     <h3 className="text-sm font-medium text-gray-900">
                       Company
@@ -133,8 +133,8 @@ export default function Footer() {
           </div>
 
           <div className="lg:grid lg:grid-cols-2 lg:gap-x-6 xl:gap-x-8">
-            <div className="bg-gray-100 rounded-lg p-6 flex items-center sm:p-10">
-              <div className="max-w-sm mx-auto">
+            <div className="flex items-center rounded-lg bg-gray-100 p-6 sm:p-10">
+              <div className="mx-auto max-w-sm">
                 <h3 className="font-semibold text-gray-900">
                   Sign up for our newsletter
                 </h3>
@@ -151,12 +151,12 @@ export default function Footer() {
                     type="text"
                     autoComplete="email"
                     required
-                    className="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                    className="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                   />
-                  <div className="mt-3 sm:flex-shrink-0 sm:mt-0 sm:ml-4">
+                  <div className="mt-3 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
                     <button
                       type="submit"
-                      className="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-indigo-500"
+                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white"
                     >
                       Sign up
                     </button>
@@ -165,18 +165,18 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="mt-6 relative py-12 px-6 flex items-center sm:py-16 sm:px-10 lg:mt-0">
-              <div className="absolute inset-0 rounded-lg overflow-hidden">
+            <div className="relative mt-6 flex items-center px-6 py-12 sm:px-10 sm:py-16 lg:mt-0">
+              <div className="absolute inset-0 overflow-hidden rounded-lg">
                 <Image
                   width={500}
                   height={500}
                   src="https://tailwindui.com/img/ecommerce-images/footer-02-exclusive-sale.jpg"
                   alt=""
-                  className="w-full h-full filter saturate-0 object-center object-cover"
+                  className="h-full w-full object-cover object-center saturate-0 filter"
                 />
                 <div className="absolute inset-0 bg-indigo-600 bg-opacity-90" />
               </div>
-              <div className="relative max-w-sm mx-auto text-center">
+              <div className="relative mx-auto max-w-sm text-center">
                 <h3 className="text-2xl font-extrabold tracking-tight text-white">
                   Get early access
                 </h3>
@@ -185,7 +185,7 @@ export default function Footer() {
                   sent you to get access.{" "}
                   <a
                     href="#"
-                    className="font-bold text-white whitespace-nowrap hover:text-gray-200"
+                    className="whitespace-nowrap font-bold text-white hover:text-gray-200"
                   >
                     Go now<span aria-hidden="true"> &rarr;</span>
                   </a>

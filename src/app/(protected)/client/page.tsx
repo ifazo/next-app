@@ -11,6 +11,6 @@ const ClientPage = () => {
       <p>Welcome, {user?.name}!</p>
     </div>
   );
-}
+};
 
 export default ClientPage;

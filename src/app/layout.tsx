@@ -11,7 +11,7 @@ import { auth } from "@/auth";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Next TS App",
+  title: "Ifaz Next App",
   description: "Created by ifaz",
 };
 

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // ! RTk Query method can only use in Client side component
 export const api = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
   tagTypes: ["Product", "User", "Category", "Blog"],
   endpoints: (builder: any) => ({
     getUsers: builder.query({
@@ -41,7 +41,8 @@ export const api = createApi({
       providesTags: ["Product"],
     }),
     getProductsByPage: builder.query({
-      query: (skip: number, limit: number) => `/products?skip=${skip}&limit=${limit}`,
+      query: (skip: number, limit: number) =>
+        `/products?skip=${skip}&limit=${limit}`,
       providesTags: ["Product"],
     }),
     getProduct: builder.query({

@@ -1,7 +1,3 @@
-
-
 export default function Page() {
-  return (
-    <div>Error Page</div>
-  )
+  return <div>Error Page</div>;
 }

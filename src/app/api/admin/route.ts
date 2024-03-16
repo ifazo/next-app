@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const role = await currentRole();
 
-  if (role === UserRole.ADMIN) {
+  if (role === UserRole.admin) {
     return new NextResponse(null, { status: 200 });
   }
 

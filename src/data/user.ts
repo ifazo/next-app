@@ -1,21 +1,86 @@
-import { db } from "@/lib/db";
+// "use server";
 
-export const getUserByEmail = async (email: string) => {
+import prisma from "@/lib/prisma";
+import { User, UserRole } from "@prisma/client";
+
+export const getUsers = async ({ role }: { role: UserRole }) => {
   try {
-    const user = await db.user.findUnique({ where: { email } });
-
-    return user;
-  } catch {
-    return null;
+    if (role) {
+      const users = await prisma.user.findMany({
+        where: {
+          role,
+        },
+      });
+      return users;
+    } else {
+      const users = await prisma.user.findMany();
+      return users;
+    }
+  } catch (error) {
+    return error;
   }
 };
 
-export const getUserById = async (id: string) => {
+export const getUser = async (id: string) => {
   try {
-    const user = await db.user.findUnique({ where: { id } });
-
+    const user = await prisma.user.findUnique({
+      where: {
+        id,
+      },
+    });
     return user;
-  } catch {
-    return null;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getUserByEmail = async (email: string) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    return user;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const createUser = async (data: User) => {
+  try {
+    const user = await prisma.user.create({
+      data,
+    });
+    return user;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const updateUser = async (id: string, data: User) => {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        id,
+      },
+      data,
+    });
+    return user;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deleteUser = async (id: string) => {
+  try {
+    const user = await prisma.user.delete({
+      where: {
+        id,
+      },
+    });
+    return user;
+  } catch (error) {
+    return error;
   }
 };

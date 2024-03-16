@@ -7,28 +7,26 @@ import toast from "react-hot-toast";
 
 const AdminPage = () => {
   const onServerActionClick = () => {
-    admin()
-      .then((data) => {
-        if (data.error) {
-          toast.error(data.error);
-        }
+    admin().then((data) => {
+      if (data.error) {
+        toast.error(data.error);
+      }
 
-        if (data.success) {
-          toast.success(data.success);
-        }
-      })
-  }
-  
+      if (data.success) {
+        toast.success(data.success);
+      }
+    });
+  };
+
   const onApiRouteClick = () => {
-    fetch("/api/admin")
-      .then((response) => {
-        if (response.ok) {
-          toast.success("Allowed API Route!");
-        } else {
-          toast.error("Forbidden API Route!");
-        }
-      })
-  }
+    fetch("/api/admin").then((response) => {
+      if (response.ok) {
+        toast.success("Allowed API Route!");
+      } else {
+        toast.error("Forbidden API Route!");
+      }
+    });
+  };
 
   return (
     <div>

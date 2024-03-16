@@ -1,12 +1,9 @@
-import NextAuth from "next-auth"
+import NextAuth from "next-auth";
 import { UserRole } from "@prisma/client";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-
-import { db } from "@/lib/db";
 import authConfig from "@/auth.config";
-import { getUserById } from "@/data/user";
-import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
-import { getAccountByUserId } from "./data/account";
+import prisma from "./lib/prisma";
+import { getUser } from "./data/user";
 
 export const {
   handlers: { GET, POST },
@@ -16,37 +13,23 @@ export const {
   update,
 } = NextAuth({
   pages: {
-    signIn: "/auth/login",
+    signIn: "/auth/signin",
     error: "/auth/error",
   },
   events: {
     async linkAccount({ user }) {
-      await db.user.update({
-        where: { id: user.id },
-        data: { emailVerified: new Date() }
-      })
-    }
+      // await prisma.user.update({
+      //   where: { id: user.id },
+      //   data: { updatedAt: new Date() },
+      // });
+    },
   },
   callbacks: {
     async signIn({ user, account }) {
       // Allow OAuth without email verification
       if (account?.provider !== "credentials") return true;
 
-      const existingUser = await getUserById(user.id);
-
-      // Prevent sign in without email verification
-      if (!existingUser?.emailVerified) return false;
-
-      if (existingUser.isTwoFactorEnabled) {
-        const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id);
-
-        if (!twoFactorConfirmation) return false;
-
-        // Delete two factor confirmation for next sign in
-        await db.twoFactorConfirmation.delete({
-          where: { id: twoFactorConfirmation.id }
-        });
-      }
+      const existingUser = await getUser(user.id);
 
       return true;
     },
@@ -74,24 +57,19 @@ export const {
     async jwt({ token }) {
       if (!token.sub) return token;
 
-      const existingUser = await getUserById(token.sub);
+      const existingUser = await getUser(token.sub);
 
       if (!existingUser) return token;
 
-      const existingAccount = await getAccountByUserId(
-        existingUser.id
-      );
-
-      token.isOAuth = !!existingAccount;
-      token.name = existingUser.name;
-      token.email = existingUser.email;
-      token.role = existingUser.role;
-      token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
+      // token.id = existingUser.id;
+      // token.name = existingUser.name;
+      // token.email = existingUser.email;
+      // token.role = existingUser.role;
 
       return token;
-    }
+    },
   },
-  adapter: PrismaAdapter(db),
+  adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
   ...authConfig,
 });

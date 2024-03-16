@@ -99,24 +99,24 @@ function classNames(...classes: string[]) {
 export default function ServiceOverview() {
   return (
     <div className="bg-white">
-      <div className="mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         {/* Product */}
-        <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
+        <div className="lg:grid lg:grid-cols-7 lg:grid-rows-1 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
           {/* Product image */}
-          <div className="lg:row-end-1 lg:col-span-4">
-            <div className="aspect-w-4 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden">
+          <div className="lg:col-span-4 lg:row-end-1">
+            <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg bg-gray-100">
               <Image
                 height={500}
                 width={500}
                 src={product.imageSrc}
                 alt={product.imageAlt}
-                className="object-center object-cover"
+                className="object-cover object-center"
               />
             </div>
           </div>
 
           {/* Product details */}
-          <div className="max-w-2xl mx-auto mt-14 sm:mt-16 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
+          <div className="mx-auto mt-14 max-w-2xl sm:mt-16 lg:col-span-3 lg:row-span-2 lg:row-end-2 lg:mt-0 lg:max-w-none">
             <div className="flex flex-col-reverse">
               <div className="mt-4">
                 <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
@@ -126,7 +126,7 @@ export default function ServiceOverview() {
                 <h2 id="information-heading" className="sr-only">
                   Product information
                 </h2>
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="mt-2 text-sm text-gray-500">
                   Version {product.version.name} (Updated{" "}
                   <time dateTime={product.version.datetime}>
                     {product.version.date}
@@ -145,7 +145,7 @@ export default function ServiceOverview() {
                         reviews.average > rating
                           ? "text-yellow-400"
                           : "text-gray-300",
-                        "h-5 w-5 flex-shrink-0"
+                        "h-5 w-5 flex-shrink-0",
                       )}
                       aria-hidden="true"
                     />
@@ -155,26 +155,26 @@ export default function ServiceOverview() {
               </div>
             </div>
 
-            <p className="text-gray-500 mt-6">{product.description}</p>
+            <p className="mt-6 text-gray-500">{product.description}</p>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
               <button
                 type="button"
-                className="w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500"
+                className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
               >
                 Pay {product.price}
               </button>
               <button
                 type="button"
-                className="w-full bg-indigo-50 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-indigo-700 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500"
+                className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-50 px-8 py-3 text-base font-medium text-indigo-700 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
               >
                 Preview
               </button>
             </div>
 
-            <div className="border-t border-gray-200 mt-10 pt-10">
+            <div className="mt-10 border-t border-gray-200 pt-10">
               <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
-              <div className="mt-4 prose prose-sm text-gray-500">
+              <div className="prose prose-sm mt-4 text-gray-500">
                 <ul role="list">
                   {product.highlights.map((highlight) => (
                     <li key={highlight}>{highlight}</li>
@@ -183,7 +183,7 @@ export default function ServiceOverview() {
               </div>
             </div>
 
-            <div className="border-t border-gray-200 mt-10 pt-10">
+            <div className="mt-10 border-t border-gray-200 pt-10">
               <h3 className="text-sm font-medium text-gray-900">License</h3>
               <p className="mt-4 text-sm text-gray-500">
                 {license.summary}{" "}
@@ -196,17 +196,17 @@ export default function ServiceOverview() {
               </p>
             </div>
 
-            <div className="border-t border-gray-200 mt-10 pt-10">
+            <div className="mt-10 border-t border-gray-200 pt-10">
               <h3 className="text-sm font-medium text-gray-900">Share</h3>
-              <ul role="list" className="flex items-center space-x-6 mt-4">
+              <ul role="list" className="mt-4 flex items-center space-x-6">
                 <li>
                   <a
                     href="#"
-                    className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
+                    className="flex h-6 w-6 items-center justify-center text-gray-400 hover:text-gray-500"
                   >
                     <span className="sr-only">Share on Facebook</span>
                     <svg
-                      className="w-5 h-5"
+                      className="h-5 w-5"
                       aria-hidden="true"
                       fill="currentColor"
                       viewBox="0 0 20 20"
@@ -222,11 +222,11 @@ export default function ServiceOverview() {
                 <li>
                   <a
                     href="#"
-                    className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
+                    className="flex h-6 w-6 items-center justify-center text-gray-400 hover:text-gray-500"
                   >
                     <span className="sr-only">Share on Instagram</span>
                     <svg
-                      className="w-6 h-6"
+                      className="h-6 w-6"
                       aria-hidden="true"
                       fill="currentColor"
                       viewBox="0 0 24 24"
@@ -242,11 +242,11 @@ export default function ServiceOverview() {
                 <li>
                   <a
                     href="#"
-                    className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
+                    className="flex h-6 w-6 items-center justify-center text-gray-400 hover:text-gray-500"
                   >
                     <span className="sr-only">Share on Twitter</span>
                     <svg
-                      className="w-5 h-5"
+                      className="h-5 w-5"
                       aria-hidden="true"
                       fill="currentColor"
                       viewBox="0 0 20 20"
@@ -259,7 +259,7 @@ export default function ServiceOverview() {
             </div>
           </div>
 
-          <div className="w-full max-w-2xl mx-auto mt-16 lg:max-w-none lg:mt-0 lg:col-span-4">
+          <div className="mx-auto mt-16 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none">
             <Tab.Group as="div">
               <div className="border-b border-gray-200">
                 <Tab.List className="-mb-px flex space-x-8">
@@ -268,8 +268,8 @@ export default function ServiceOverview() {
                       classNames(
                         selected
                           ? "border-indigo-600 text-indigo-600"
-                          : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
-                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
+                          : "border-transparent text-gray-700 hover:border-gray-300 hover:text-gray-800",
+                        "whitespace-nowrap border-b-2 py-6 text-sm font-medium",
                       )
                     }
                   >
@@ -280,8 +280,8 @@ export default function ServiceOverview() {
                       classNames(
                         selected
                           ? "border-indigo-600 text-indigo-600"
-                          : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
-                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
+                          : "border-transparent text-gray-700 hover:border-gray-300 hover:text-gray-800",
+                        "whitespace-nowrap border-b-2 py-6 text-sm font-medium",
                       )
                     }
                   >
@@ -292,8 +292,8 @@ export default function ServiceOverview() {
                       classNames(
                         selected
                           ? "border-indigo-600 text-indigo-600"
-                          : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
-                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
+                          : "border-transparent text-gray-700 hover:border-gray-300 hover:text-gray-800",
+                        "whitespace-nowrap border-b-2 py-6 text-sm font-medium",
                       )
                     }
                   >
@@ -308,7 +308,7 @@ export default function ServiceOverview() {
                   {reviews.featured.map((review, reviewIdx) => (
                     <div
                       key={review.id}
-                      className="flex text-sm text-gray-500 space-x-4"
+                      className="flex space-x-4 text-sm text-gray-500"
                     >
                       <div className="flex-none py-10">
                         <Image
@@ -316,13 +316,13 @@ export default function ServiceOverview() {
                           width={40}
                           src={review.avatarSrc}
                           alt=""
-                          className="w-10 h-10 bg-gray-100 rounded-full"
+                          className="h-10 w-10 rounded-full bg-gray-100"
                         />
                       </div>
                       <div
                         className={classNames(
                           reviewIdx === 0 ? "" : "border-t border-gray-200",
-                          "py-10"
+                          "py-10",
                         )}
                       >
                         <h3 className="font-medium text-gray-900">
@@ -332,7 +332,7 @@ export default function ServiceOverview() {
                           <time dateTime={review.datetime}>{review.date}</time>
                         </p>
 
-                        <div className="flex items-center mt-4">
+                        <div className="mt-4 flex items-center">
                           {[0, 1, 2, 3, 4].map((rating) => (
                             <StarIcon
                               key={rating}
@@ -340,7 +340,7 @@ export default function ServiceOverview() {
                                 review.rating > rating
                                   ? "text-yellow-400"
                                   : "text-gray-300",
-                                "h-5 w-5 flex-shrink-0"
+                                "h-5 w-5 flex-shrink-0",
                               )}
                               aria-hidden="true"
                             />
@@ -351,7 +351,7 @@ export default function ServiceOverview() {
                         </p>
 
                         <div
-                          className="mt-4 prose prose-sm max-w-none text-gray-500"
+                          className="prose prose-sm mt-4 max-w-none text-gray-500"
                           dangerouslySetInnerHTML={{ __html: review.content }}
                         />
                       </div>
@@ -367,7 +367,7 @@ export default function ServiceOverview() {
                       <dt className="mt-10 font-medium text-gray-900">
                         {faq.question}
                       </dt>
-                      <dd className="mt-2 prose prose-sm max-w-none text-gray-500">
+                      <dd className="prose prose-sm mt-2 max-w-none text-gray-500">
                         <p>{faq.answer}</p>
                       </dd>
                     </Fragment>
