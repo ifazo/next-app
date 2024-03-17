@@ -1,5 +1,5 @@
-import { IProduct } from "@/types";
 import { StarIcon } from "@heroicons/react/20/solid";
+import { Product } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,7 +7,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ProductCard({ product }: { product: IProduct }) {
+export default function ProductCard({ product }: { product: Product }) {
   if (!product) return <div>Product not found</div>;
   return (
     <div className="group relative border-b border-r border-gray-200 p-4 sm:p-6">
@@ -22,7 +22,7 @@ export default function ProductCard({ product }: { product: IProduct }) {
       </div>
       <div className="pt-2 text-center">
         <h3 className="text-sm font-medium text-gray-900">
-          <Link href={`/products/${product._id}`}>
+          <Link href={`/products/${product.id}`}>
             <span aria-hidden="true" className="absolute inset-0" />
             {product.title}
           </Link>

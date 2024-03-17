@@ -1,4 +1,4 @@
-import { IProduct } from "@/types";
+import { Product } from "@prisma/client";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // ! RTk Query method can only use in Client side component
 export const api = createApi({
@@ -49,7 +49,7 @@ export const api = createApi({
       query: (id: string) => `/products/${id}`,
     }),
     createProduct: builder.mutation({
-      query: (body: IProduct) => ({
+      query: (body: Product) => ({
         url: "/products",
         method: "POST",
         body,
@@ -57,7 +57,7 @@ export const api = createApi({
       invalidatesTags: ["Product"],
     }),
     updateProduct: builder.mutation({
-      query: ({ id, ...body }: { id: string; body: IProduct }) => ({
+      query: ({ id, ...body }: { id: string; body: Product }) => ({
         url: `/products/${id}`,
         method: "PATCH",
         body,

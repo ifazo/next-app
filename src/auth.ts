@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import { UserRole } from "@prisma/client";
+import { User, UserRole } from "@prisma/client";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import authConfig from "@/auth.config";
 import prisma from "./lib/prisma";
@@ -57,14 +57,14 @@ export const {
     async jwt({ token }) {
       if (!token.sub) return token;
 
-      const existingUser = await getUser(token.sub);
+      const existingUser = (await getUser(token.sub)) as User;
 
       if (!existingUser) return token;
 
-      // token.id = existingUser.id;
-      // token.name = existingUser.name;
-      // token.email = existingUser.email;
-      // token.role = existingUser.role;
+      token.id = existingUser.id;
+      token.name = existingUser.name;
+      token.email = existingUser.email;
+      token.role = existingUser.role;
 
       return token;
     },

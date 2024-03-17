@@ -3,19 +3,23 @@
 import prisma from "@/lib/prisma";
 import { User, UserRole } from "@prisma/client";
 
-export const getUsers = async ({ role }: { role: UserRole }) => {
+export const getUsers = async () => {
   try {
-    if (role) {
-      const users = await prisma.user.findMany({
-        where: {
-          role,
-        },
-      });
-      return users;
-    } else {
-      const users = await prisma.user.findMany();
-      return users;
-    }
+    const users = await prisma.user.findMany();
+    return users;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getUsersByRole = async (role: UserRole) => {
+  try {
+    const users = await prisma.user.findMany({
+      where: {
+        role,
+      },
+    });
+    return users;
   } catch (error) {
     return error;
   }
