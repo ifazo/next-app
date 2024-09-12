@@ -1,6 +1,4 @@
-"use client";
 import { StarIcon } from "@heroicons/react/20/solid";
-import { useEffect, useState } from "react";
 import { Product } from "@prisma/client";
 
 const reviews = { href: "#", average: 4, totalCount: 117 };
@@ -24,20 +22,8 @@ export default async function ProductPage({
 }: {
   params: { id: string };
 }) {
-  const res = await fetch(`process.env.BASE_URL/api/products/${id}`);
+  const res = await fetch(`http://localhost:3000/api/products/${id}`);
   const product = (await res.json()) as Product;
-
-  // const [product, setProduct] = useState<Product | null>()
-
-  if (!product) {
-    return <div>Loading...</div>;
-  }
-
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/api/products')
-  //     .then((res) => res.json())
-  //     .then((data) => setProduct(data))
-  // }, [])
 
   return (
     <div className="bg-white">

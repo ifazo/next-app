@@ -69,12 +69,12 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Page() {
+export default function ProductsPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [products, setProducts] = useState<Product[] | undefined>(undefined);
 
   useEffect(() => {
-    fetch(`process.env.BASE_URL/api/products`)
+    fetch("/api/products")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -88,7 +88,6 @@ export default function Page() {
         console.error("Error fetching data:", error);
       });
   }, []);
-  console.log(products);
 
   return (
     <div className="bg-white">

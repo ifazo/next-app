@@ -2,6 +2,7 @@
 const nextConfig = {
   env: {
     BASE_URL: process.env.BASE_URL,
+    API_URL: process.env.API_URL,
     DATABASE_URL: process.env.DATABASE_URL,
     AUTH_SECRET: process.env.AUTH_SECRET,
     GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ReactNode } from "react";
 import { SessionProvider } from "next-auth/react";
@@ -25,7 +26,8 @@ export default async function RootLayout({
     <SessionProvider session={session}>
       <html lang="en">
         <body className={inter.className}>
-          <Header session={session} />
+          {/* <Header session={session} /> */}
+          <Navbar session={session} />
           {children}
           <Toaster />
           <Footer />
